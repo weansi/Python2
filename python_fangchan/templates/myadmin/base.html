@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台首页</title>
+   <link rel="stylesheet" href="/static/myadmin/css/default.css">  {#连接一个静态的地址用来放html的样式#}
+    <script src="/static/jquery.min.js"></script>  {#加载jquery.min.js#}
+</head>
+<body>
+
+<div class="header">
+   <div class="header1">
+       <span class="l text_left">欢迎：<span class="red">{{ request.COOKIES.username }}</span> 登陆</span>
+       <span class="r text_right"><a href="/myadmin/login_out">退出</a></span>
+   </div>
+</div>
+
+<div class="main">
+   <div class="left">
+       <div class="nav">
+           <ul>
+               <li><a href="/myadmin/">后台首页</a></li>
+               <li><a href="/myadmin/config">网站配置</a></li>
+               <li><a href="/myadmin/article_cat_list">文章分类</a></li>
+               <li><a href="/myadmin/article_list">文章</a></li>
+               <li><a href="/myadmin/message_list">留言板</a></li>
+               <li><a href="/myadmin/admin_list">用户管理</a></li>
+               <li><a href="/home/">前端首页</a></li>
+
+           </ul>
+           </div>
+   </div>
+  <div class="right">
+
+        {% block right_conent %}
+           这里是后台子模板需要替换的右边内容部分
+
+        {% endblock %}
+    </div>
+</div>
+</body>
+</html>

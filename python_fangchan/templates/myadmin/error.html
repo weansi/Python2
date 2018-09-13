@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>错误提示页面</title>
+    <style>
+        .error{width: 300px;margin:0 auto;margin-top:30px;color:red;font_size:30px;}
+        .tishi{width:300px;margin:0 auto;}
+
+    </style>
+</head>
+<body>
+<div class ="error">{{ error }}</div>
+<div class="tishi">跳转倒计时<span id="mytime">3</span>
+    <a href="javascript:history.go(-1)">立即跳转</a>
+</div>
+<script>
+      setInterval(function(){
+          span_time=document.getElementById('mytime').innerHTML
+          if(span_time>0){
+              span_time--;
+              document.getElementById('mytime').innerHTML=span_time
+          }
+          else{
+              location.href='javascript:history.go(-1)'
+          }
+      },500)
+
+</script>
+</body>
+</html>

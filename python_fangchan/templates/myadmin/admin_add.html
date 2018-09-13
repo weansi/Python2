@@ -1,0 +1,76 @@
+{% extends 'myadmin/base.html' %} {#  继承myadmin/base.html父类模板 #}
+        <div class="right">
+        {% block right_conent %} {# 替换的内容开始位置 #}
+        <h3>添加用户:</h3>
+        <!--<div style="text-align: right"><a href="{% url 'admin_list' %}">返回列表</a></div>-->
+        <div class="myform">
+          <form action="{% url 'admin_add' %}"method="post" onsubmit="return check_submit();">
+              {% csrf_token %}
+              <div>
+                  <label>用户名：</label>
+                  <input type="text"name="username"  onblur="check_user(this)"required>
+{#                  失去焦点事件#}
+                  <span id="username_error" style="color:red"></span>
+              </div>
+              <div>
+                  <label>密码：</label>
+                  <input type="password"name="password" required>
+              </div>
+              <div>
+                  <label>确认密码：</label>
+                  <input type="password"name="repassword" required>
+                  <span id="pwd_error" style="color:red"></span>
+              </div>
+               <div class="submit"><input id="submit" type="submit" value="提交"/></div>
+          </form>
+        </div>
+            </div>
+            <script>
+            //检查用户名
+            function check_user(obj){
+                //取得当前的用户名
+                //alert($('input[name=username]').val())
+                var username=$(obj).val()
+{#                取input文本框标签里面的内容用属性取值使用.val()#}
+                if(username !=''){
+                    //拼接ajax请求地址：
+                    var url='/myadmin/check_user?username='+username
+
+                    $.get(url,function(data){
+                        if(data !=0){
+                           $('#username_error').html('*用户名已存在!')
+                        }else{
+                            $('#username_error').html('')
+                        }
+                    })
+                }
+
+            }
+
+            //检查form表单中的内容1.用户名不能重复，2.二次密码需要一致：
+            function check_submit(){
+                //用户名重复的错误信息
+                var username_error=$('#username_error').html()
+{#                用id取值使用#username_error.html()来去里面的值#}
+                var password_error=$('#pwd_error').html()
+                var password=$('input[name=password]').val()
+                var repassword=$('input[name=repassword]').val()
+                //两次密码判断
+                if(password != repassword){
+                    $('#pwd_error').html('*两次密码不一致！')
+                }else{
+                    $('#pwd_error').html('')
+                }
+                //如果用户名和密码的错误都为空，返回true ，可以提交form表单
+                if(username_error =='' && password_error==''){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            </script>
+        {% endblock %}
+{#        替换内容结束位置#}
+    </div>
+
+

@@ -1,0 +1,44 @@
+{% extends 'myadmin/base.html' %}
+    <div class="right">
+    {% block right_conent %}
+        <h3>用户管理</h3>
+
+           <div style="text-align: right" ><a href="{% url 'admin_add' %}">+添加用户</a></div>
+            <div class="list">
+             <table>
+                  <tr>
+                      <th width="5%">ID</th>
+                      <th width="13%">用户名</th>
+                      <th width="20%">密码</th>
+                      <th width="20%">添加时间</th>
+                      <th width="20%">更新时间</th>
+                      <th width="13%">操作</th>
+                  </tr>
+                {% for i in res %}
+                 <tr class="center">
+                    <td >{{ i.id }}</td>
+                    <td  >{{ i.username }}</td>
+                     <td >{{ i.password}}</td>
+                     <td >{{ i.add_time}}</td>
+                     <td >{{ i.update_time}}</td>
+                     <td ><a class="red"href="#" onclick="del({{i.id}})">删除</a> | <a href="/myadmin/admin_edit?id={{i.id}}">修改</a></td>
+                </tr>
+                 {% endfor %}
+            </table>
+          </div>
+
+        <div class="page">{{ page_html|safe }}</div>
+         <script>
+         //删除操作幂名函数
+                function del(id){
+                    if(confirm('确定删除吗？')){//confirm是弹窗
+
+                     location.href='/myadmin/admin_del?id='+id//字符串拼接，把地址给本地地址
+                    }
+                }
+            </script>
+
+    {% endblock %}
+    </div>
+</body>
+</html>

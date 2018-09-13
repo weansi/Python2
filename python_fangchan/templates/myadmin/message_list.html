@@ -1,0 +1,98 @@
+{% extends 'myadmin/base.html' %}
+    <div class="right">
+    {% block right_conent %}
+        <h3>留言管理</h3>
+
+            <form action="/myadmin/message_add" method="post">
+                    {% csrf_token %}
+{#                    自己带加密#}
+{#                    <input type="hidden"name="id" value="{{ res.id }}"/>#}
+                    <label >留言者</label>
+{#                    创建文本编辑框#}
+                    <input type="text" name="my_name" >
+
+                    <input type="submit" value="添加留言"/>
+                </form>
+            <div class="list">
+             <table>
+                  <tr>
+                      <th width="5%">ID</th>
+                      <th width="10%">留言名</th>
+                      <th width="10%">添加时间</th>
+                      <th >留言内容</th>
+                      <th width="13%">操作</th>
+                  </tr>
+                {% for i in res %}
+                 <tr class="center">
+                    <td >{{ i.id }}</td>
+                     <td >{{ i.my_name}}</td>
+                     <td >{{ i.add_time}}</td>
+                     <td >{{ i.content}}</td>
+{#                       onclick是点击事件，后面定义一个函数，里面是可变的当前id#，this是点击当前#}
+                     <td> <a class="red" href="#" onclick=del({{ i.id }},this)>删除</a>|
+                             <a  href="#" onclick="edit({{ i.id }},this)">修改</a></td>
+                     </tr>
+                              {% endfor %}
+{#                     循环结束#}
+
+                 </table>
+        </div>
+
+       <div class="page">{{ page_html|safe }}</div>
+{#        在前端显示分页page_html#}
+{#        <div style='border:1px solid red;' class="myajax"></div>#}
+{#        <input type="button" value="请求数据显示到" onclick="qingqiu()"/>#}
+ <script>
+
+ //分类名修改点击的操作幂名函数，obj参数代表的就是this
+ //修改分类名操作
+ function edit(id,obj){
+     my_edit=$(obj).parent().prev()//取得需要修改的元素。当前<a>元素的父元素parent()是<td>.的兄弟元素prev()是<td>分类名<td>
+     old_content=my_edit.text()//取得修改元素的内容
+     //解决多次点击修改的bug
+     if(old_content == ''){
+         old_content=my_edit.find('input').val()
+{#         如果old_cat_name为空,则会赋值给它#}
+     }
+     input='<input type="text" onblur="change_content('+id+',this)" value="'+old_content+'"/>';//拼接替换的内容
+     my_edit.html(input)  //替换元素内容
+     my_edit.find('input').focus()
+{#     添加焦点#}
+ }
+//ajax修改分类名
+ function change_content(id,obj){
+    // alert(id);alert($(obj).val())
+     //拼接url
+     new_content=$(obj).val()//获取修改后的内容
+     url = '/myadmin/message_edit?id='+id+'&content='+new_content
+     //发送异步请求
+     $.get(url,function(data){
+           // alert(data)
+         $(obj).parent().html(new_content)
+     })
+ }
+{#function qingqiu(){#}
+{##}
+{#    $.get('/myadmin/admin_list',function(data){#}
+{#        $('.myajax').html(data)#}
+{#    })#}
+{##}
+
+//删除操作
+     function del(id,obj) {
+         if (confirm('是否需要删除？')) {
+             //使用ajax 的get方式提交请求
+             $.get('/myadmin/message_del?id=' + id, function (data) {
+                 //移除
+                 $(obj).parents('tr').remove()
+             })
+             //location.href='/myadmin/article_cat_del?id='+id
+         }
+
+     }
+</script>
+    {% endblock %}
+
+
+</div>
+

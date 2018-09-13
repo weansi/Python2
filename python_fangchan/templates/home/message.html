@@ -1,0 +1,119 @@
+{% extends 'home/base.html' %}
+{% block mytop %}
+ <script src="/static/jquery.min.js"></script>
+    <link rel="stylesheet" href="/static/myadmin/font-awesome-4.7.0/css/font-awesome.min.css"/>
+
+<style>
+table{border-collapse: collapse}
+.keleyitable {
+width: 500px;
+}
+
+.keleyitable table, td, th {
+border: 1px solid green;margin-top:2px;
+}
+.klytd {width:150px;text-align:center;
+
+}
+.hvttd {
+    width:300px;
+    height:50px}
+.for{
+width:150px;height:150px;margin: 10px 50px 10px 10px}
+.submit{margin:2px 0px 0px 0px;}
+h2{margin-left:10px}
+</style>
+    <h2>留言列表</h2>
+    <div class="for">
+
+    <form action='{% url "message" %}' method="post" onsubmit="return check_submit()">
+        {% csrf_token %}
+        <div style="margin-top:2px">
+            <label>留言者</label>
+        <input type="text" name="my_name" required >
+        </div>
+
+        <div style="margin-top:10px">
+            <label>内  容:</label>
+                <textarea name="content"></textarea>
+        </div>
+{#         <div class="myinput">#}
+{#           <label> 验证码：</label>#}
+{#           <span style="position: relative ;display: inline-block ;margin-right: 10px;">#}
+{#               <input style="width: 60px" maxlength="8" onblur="check_code(this)"type="text" name="code" placeholder="验证码"required>#}
+{#               <img src="{% url 'get_code' %}" onclick="javacript:this.src=this.src+'?'" width="80px" height="25px"/>#}
+{#               <div id="code_error" style="position: absolute;right:-22px;top: 2px;width :40px;height:20px;">#}
+{#               </div>#}
+{#           </span>#}
+{#           {{ code }}#}
+{#           <br/>#}
+{#       </div>#}
+       <style>
+           .error{height:25px;text-align:center;line-height:25px;font-size:12px;}
+       </style>
+       <div class="error">
+           <span id="error" style="color:red"></span>
+       </div>
+
+        <div class="submit"><input type="submit" value="提交"/></div>
+    </form>
+    </div>
+
+
+
+
+    {% for i in res %}
+    <div style="margin:0px auto;" class="keleyitable">
+<table>
+<div>
+
+<tr><td class="klytd">留 言 人:</td><td class ="hvttd">{{ i.my_name }}</td></tr>
+<tr><td class="klytd">内   容 :</td><td class ="hvttd">{{ i.content }}</td></tr>
+<tr><td class="klytd">留言时间:</td><td class="hvttd">{{ i.add_time }}</td></tr>
+
+</div>
+</table>
+{% endfor %}
+    </div>
+
+{#<table>#}
+{##}
+{#<div >#}
+{##}
+{#<tr><td class="klytd">留 言 人:</td><td class ="hvttd">{{ i.my_name }}</td></tr>#}
+{#<tr><td class="klytd">内   容 :</td><td class ="hvttd">{{ i.content }}</td></tr>#}
+{#<tr><td class="klytd">留言时间:</td><td class="hvttd">{{ i.add_time }}</td></tr>#}
+{# {% endfor %}#}
+{#</div>#}
+{#</table>#}
+{#</div>#}
+{# <script>#}
+{#        //更换验证码：#}
+{#        function change_code(obj){#}
+{#            //最后添加一个？--表示重新请求的地址和当前的地址不一致，跳过浏览器的缓存#}
+{#            obj.src=obj.src+'?'#}
+{#        }#}
+{#        //验证用户输入的验证码#}
+{#        function check_code(obj){#}
+{#            //取得输入的内容#}
+{#             code=$(obj).val()#}
+{#            if(code !=''){#}
+{#                url='/home/check_code?code='+code#}
+{#                $.get(url,function(data){#}
+{#                    if(data =='1'){#}
+{#                        img='<i class="fa fa-close"></i>'#}
+{#                        $('#code_error').html('**验证码错误')#}
+{##}
+{#                    }else{#}
+{#                        $('#code_error').html('')#}
+{#                    }#}
+{#                })#}
+{#            }#}
+{##}
+{#        }#}
+{##}
+{##}
+{##}
+{##}
+{#    </script>#}
+{% endblock %}

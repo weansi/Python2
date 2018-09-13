@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>房产信息网站</title>
+<meta name="keywords" content="黑色模板,个人网站模板,个人博客模板,博客模板,css3,html5,网站模板" />
+<meta name="description" content="这是一个有关黑色时间轴的css3 html5 网站模板" />
+<link href="static/home/css/styles.css" rel="stylesheet">
+<link href="static/home/css/animation.css" rel="stylesheet">
+<!-- 返回顶部调用 begin -->
+<link href="static/home/css/lrtk.css" rel="stylesheet" />
+<script type="text/javascript" src="static/home/js/jquery.js"></script>
+<script type="text/javascript" src="static/home/js/js.js"></script>
+<!-- 返回顶部调用 end-->
+<!--[if lt IE 9]>
+<script src="static/home/js/modernizr.js"></script>
+<![endif]-->
+</head>
+<body>
+<header>
+  <nav id="nav">
+    <ul>
+      <li><a href="/" >首页—西安</a></li>
+    <li><a href="{% url 'article1'%}">天津市</a></li>
+    <li><a href="{% url 'article2'%}">北京市</a></li>
+      <li><a href={% url 'article3'%}>上海市</a></li>
+    <li><a href="/myadmin/login">后台登陆</a></li>
+{#    <li><a href="/message">留言板</a></li>#}
+
+    </ul>
+    <script src="static/home/js/silder.js"></script><!--获取当前页导航 高亮显示标题-->
+  </nav>
+<!--header end-->
+<div id="mainbody">
+  <div class="info">
+    <figure> <img src="static/home/images/BDA国际广场.jpg"  alt="Panama Hat">
+         <img src="static/home/images/COCO的洋房.jpg"  alt="Panama Hat">
+        <img src="static/home/images/CA创意时代大西洋金融中心.jpg"  alt="Panama Hat">
+        <img src="static/home/images/CDD创意港嘉悦广场.jpg"  alt="Panama Hat">
+        <img src="static/home/images/CDD创意港铜锣湾.jpg"  alt="Panama Hat">
+        <img src="static/home/images/CROSS万象汇.jpg"  alt="Panama Hat">
+
+      <figcaption><strong>房产专题</strong> 2018年是房地产最难的一年吗？2018年是我国房地产最难的一年吗？首先肯定比2008年和1998年好过，不过从宏观角度讲，2018年是中国房地产自2009年以后最难的一年。中国楼市这匹脱缰的野马，在2017年上半年全国住宅类物业的再次惊艳表现后，2018年楼市的冬天将更加寒冷。</figcaption>
+    </figure>
+    <div class="card">
+      <h1>我的名片——米少东</h1>
+      <p>姓名：鱼香肉丝</p>
+      <p>职业：Web前端、网页设计</p>
+      <p>电话：15029028970</p>
+      <p>Email：249202735@qq.com</p>
+      <ul class="linkmore">
+        <li><a href="/" class="talk" title="给我留言"></a></li>
+        <li><a href="/" class="address" title="联系地址"></a></li>
+        <li><a href="/" class="email" title="给我写信"></a></li>
+        <li><a href="/" class="photos" title="生活照片"></a></li>
+        <li><a href="/" class="heart" title="关注我"></a></li>
+      </ul>
+    </div>
+  </div>
+{% block mytop %}
+    这是前端头部以下需要替换部分
+    {% endblock %}
+
+</body>
+</html>

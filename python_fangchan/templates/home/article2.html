@@ -1,0 +1,160 @@
+{% extends 'home/base.html' %}
+{% block mytop %}
+<!--header end-->
+
+  <!--info end-->
+  <div class="blank"></div>
+  <div class="blogs">
+    <ul class="bloglist">
+      <li>
+        <div class="arrow_box">
+          <div class="ti"></div>
+          <!--三角形-->
+          <div class="ci"></div>
+             <h3>新楼盘资讯</h3>
+ <div class="r_box">
+      {% for new in res %}
+          <h2 class="title"><a href="/beijing?id={{new.id }}" target="_blank">楼盘名称：{{ new.name }}</a></h2>
+          <ul class="textinfo">
+            <a href="/beijing?id={{new.id }}"><img src="{{ new.img_urls }}"></a>
+            <a href="/beijing?id={{new.id }}" target="_blank" class="readmore"><h3>点击查看：楼盘详情</h3></a></li>
+
+          </ul>
+     {% endfor %}
+  <div class="page"> <a>分页：</a>{{ pager_str|safe }}</div>
+          <ul class="details">
+            <li class="likes"><a href="#">10</a></li>
+            <li class="comments"><a href="#">34</a></li>
+            <li class="icon-time"><a href="#">2013-8-7</a></li>
+          </ul>
+        </div>
+        <!--arrow_box end-->
+      </li>
+
+    </ul>
+    <!--bloglist end-->
+    <aside>
+      <div class="tuijian">
+       <h2><a>北京最新楼盘</a></h2>
+           {% for new in res %}
+
+        <ol>
+          <li><span><strong>{{ new.id }}</strong></span><a href="/beijing?id={{new.id }}">楼盘名称：{{ new.name }}</a></li>
+
+        </ol>
+             {% endfor %}
+      </div>
+      <div class="toppic">
+       <h2>楼盘动态</h2>
+        <ul>
+          <li><a href="/article2"><img src="static/home/images/万科四季花城.jpg"><h2>北京市新楼盘数量：{{ all_item }}</h2>
+
+            </a></li>
+          <li><a href="/index"><img src="static/home/images/万科地建滨河四季.jpg"><h2>西安市新楼盘数量：{{ all_item1 }}</h2>
+
+            </a></li>
+          <li><a href="/article1"><img src="static/home/images/万科城墅.jpg"><h2>天津市新楼盘数量：{{ all_item2 }}</h2>
+
+               <li><a href="/article3"><img src="static/home/images/万科城市之光蜜柚.jpg"><h2>上海市新楼盘数量：{{ all_item3 }}</h2>
+
+            </a></li>
+        </ul>
+      </div>
+      <div class="clicks">
+       <h2>热门楼盘</h2>
+            {% for new in price %}
+
+        <ol>
+          <li><span><strong>{{ new.id }}</strong></span><a href="/beijing?id={{new.id }}">楼盘名称：{{ new.name }}
+              价位：{{ new.price }}</a></li>
+
+        </ol>
+             {% endfor %}
+      </div>
+      <div class="search">
+        <form class="searchform" method="get" action="#">
+          <input type="text" name="s" value="Search" onfocus="this.value=''" onblur="this.value='Search'">
+        </form>
+      </div>
+      <div class="viny">
+        <dl>
+          <dt class="art"><img src="static/home/images/artwork.png" alt="专辑"></dt>
+          <dd class="icon-song"><span></span>南方姑娘</dd>
+          <dd class="icon-artist"><span></span>歌手：赵雷</dd>
+          <dd class="icon-album"><span></span>所属专辑：《赵小雷》</dd>
+          <dd class="icon-like"><span></span><a href="/">喜欢</a></dd>
+          <dd class="music">
+            <audio src="static/home/images/nf.mp3" controls></audio>
+          </dd>
+          <!--也可以添加loop属性 音频加载到末尾时，会重新播放-->
+        </dl>
+      </div>
+    </aside>
+  </div>
+  <!--blogs end-->
+</div>
+<!--mainbody end-->
+{#<footer>#}
+{#  <div class="footer-mid">#}
+{#    <div class="links">#}
+{#      <h2>友情链接</h2>#}
+{#      <ul>#}
+{#        <li><a href="/">杨青个人博客</a></li>#}
+{#        <li><a href="http://www.3dst.com">3DST技术服务中心</a></li>#}
+{#      </ul>#}
+{#    </div>#}
+{#    <div class="visitors">#}
+{#      <h2>最新评论</h2>#}
+{#      <dl>#}
+{#        <dt><img src="static/home/images/s8.jpg">#}
+{#        <dt>#}
+{#        <dd>DanceSmile#}
+{#          <time>49分钟前</time>#}
+{#        </dd>#}
+{#        <dd>在 <a href="http://www.yangqq.com/jstt/bj/2013-07-28/530.html" class="title">如果要学习web前端开发，需要学习什么？ </a>中评论：</dd>#}
+{#        <dd>文章非常详细，我很喜欢.前端的工程师很少，我记得几年前yahoo花高薪招聘前端也招不到</dd>#}
+{#      </dl>#}
+{#      <dl>#}
+{#        <dt><img src="static/home/images/s7.jpg">#}
+{#        <dt>#}
+{#        <dd>yisa#}
+{#          <time>2小时前</time>#}
+{#        </dd>#}
+{#        <dd>在 <a href="http://www.yangqq.com/news/s/2013-07-31/533.html" class="title">芭蕾女孩的心事儿</a>中评论：</dd>#}
+{#        <dd>我手机里面也有这样一个号码存在</dd>#}
+{#      </dl>#}
+{#      <dl>#}
+{#        <dt><img src="static/home/images/s6.jpg">#}
+{#        <dt>#}
+{#        <dd>小林博客#}
+{#          <time>8月7日</time>#}
+{#        </dd>#}
+{#        <dd>在 <a href="http://www.yangqq.com/jstt/bj/2013-06-18/285.html" class="title">如果个人博客网站再没有价值，你还会坚持吗？ </a>中评论：</dd>#}
+{#        <dd>博客色彩丰富，很是好看</dd>#}
+{#      </dl>#}
+{#    </div>#}
+{#    <section class="flickr">#}
+{#      <h2>摄影作品</h2>#}
+{#      <ul>#}
+{#        <li><a href="/"><img src="static/home/images/01.jpg"></a></li>#}
+{#        <li><a href="/"><img src="static/home/images/02.jpg"></a></li>#}
+{#        <li><a href="/"><img src="static/home/images/03.jpg"></a></li>#}
+{#        <li><a href="/"><img src="static/home/images/04.jpg"></a></li>#}
+{#        <li><a href="/"><img src="static/home/images/05.jpg"></a></li>#}
+{#        <li><a href="/"><img src="static/home/images/06.jpg"></a></li>#}
+{#        <li><a href="/"><img src="static/home/images/07.jpg"></a></li>#}
+{#        <li><a href="/"><img src="static/home/images/08.jpg"></a></li>#}
+{#        <li><a href="/"><img src="static/home/images/09.jpg"></a></li>#}
+{#      </ul>#}
+{#    </section>#}
+{#  </div>#}
+{#  <div class="footer-bottom">#}
+{#    <p>Copyright 2013 Design by <a href="http://www.yangqq.com">DanceSmile</a></p>#}
+{#  </div>#}
+{#</footer>#}
+{#<!-- jQuery仿腾讯回顶部和建议 代码开始 -->#}
+{#<div id="tbox"> <a id="togbook" href="/e/tool/gbook/?bid=1"></a> <a id="gotop" href="javascript:void(0)"></a> </div>#}
+<!-- 代码结束 -->
+{% endblock %}
+</body>
+</html>

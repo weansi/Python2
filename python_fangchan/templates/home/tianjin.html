@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>view-黑色时间轴个人博客模板</title>
+<meta name="keywords" content="黑色模板,个人网站模板,个人博客模板,博客模板,css3,html5,网站模板" />
+<meta name="description" content="这是一个有关黑色时间轴的css3 html5 网站模板" />
+<link href="static/home/css/styles.css" rel="stylesheet">
+<link href="static/home/css/view.css" rel="stylesheet">
+<!-- 返回顶部调用 begin -->
+<link href="static/home/css/lrtk.css" rel="stylesheet" />
+<script type="text/javascript" src="static/home/js/jquery.js"></script>
+<script type="text/javascript" src="static/home/js/js.js"></script>
+<!-- 返回顶部调用 end-->
+<!--[if lt IE 9]>
+<script src="static/home/js/modernizr.js"></script>
+<![endif]-->
+</head>
+<body>
+<header>
+  <nav id="nav">
+    <ul>
+    <li><a href="/" >网站首页</a></li>
+    <li><a href="/article1">天津市</a></li>
+        <li><a href="/article2">北京市</a></li>
+         <li><a href="/article3">上海市</a></li>
+    <li><a href="/myadmin/login">后台登陆</a></li>
+{#    <li><a href="/message">留言板</a></li>#}
+    </ul>
+    <script src="static/home/js/silder.js"></script><!--获取当前页导航 高亮显示标题-->
+  </nav>
+</header>
+<!--header end-->
+<div id="mainbody">
+  <div class="blogs">
+    <div id="index_view">
+        <h2 class="t_nav"><a href="/article1">天津市</a><a href="/">楼盘详细页</a></h2>
+      <h1 class="c_titile"><b>楼盘名称：{{ res.name }}</b><br/></h1>
+      <p class="box">发布时间：2018-04-1<span></span><a>楼盘所在区域：{{ res.chengshi.cs_name }}</a></p>
+      <ul>
+
+        <p><img src="{{ res.img_urls }}"/></p>
+ <p>楼盘类型：{{ res.typ }}</p>
+   <p >楼盘预售价：{{ res.price }}</p>
+    <p>楼盘地址：{{ res.addr }}</p>
+      </ul>
+         {% for z in a_res %}
+        <p>上一篇：<a href="/tianjin?id={{z.id}}&& chengshi_id ={{z.chengshi_id.id}}">{{ z.name }}</a></p>
+        {% endfor %}
+
+       {% for s in c %}
+        <p>下一篇：<a href="/tianjin?id={{s.id}}&&chengshi_id={{s.chengshi_id.id}}">{{ s.name }}</a></p>
+        {% endfor %}
+      <div class="share">
+        <!-- Baidu Button BEGIN -->
+        <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare"> <span class="bds_more">分享到：</span> <a class="bds_qzone"></a> <a class="bds_tsina"></a> <a class="bds_tqq"></a> <a class="bds_renren"></a> <a class="bds_t163"></a> <a class="shareCount"></a> </div>
+        <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6574585" ></script>
+        <script type="text/javascript" id="bdshell_js"></script>
+        <script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+        <!-- Baidu Button END -->
+      </div>
+      <div class="otherlink">
+        <h2>相关楼盘</h2>
+        <ul>
+
+        </ul>
+      </div>
+    </div>
+    <!--bloglist end-->
+    <aside>
+
+
+      <div class="tuijian">
+
+         <h2><a>楼盘所在区域：{{ res.chengshi.cs_name }}</a></h2>
+       {% for new in rew %}
+       <ol>
+        <li><span><strong>{{ new.id }}</strong></span><a href="tianjin?id={{new.id }}">{{ new.name }}</a></li>
+       <li><a href="/">楼盘类型：{{ new.typ}}</a></li>
+        </ol>  {% endfor %}
+      </div>
+{#      <div class="toppic">#}
+{#        <h2>图文并茂</h2>#}
+{#        <ul>#}
+{#          <li><a href="/"><img src="static/home/images/k01.jpg">腐女不可怕，就怕腐女会画画！#}
+{#            <p>伤不起</p>#}
+{#            </a></li>#}
+{#          <li><a href="/"><img src="static/home/images/k02.jpg">问前任，你还爱我吗？无限戳中泪点~#}
+{#            <p>感兴趣</p>#}
+{#            </a></li>#}
+{#          <li><a href="/"><img src="static/home/images/k03.jpg">世上所谓幸福，就是一个笨蛋遇到一个傻瓜。#}
+{#            <p>喜欢</p>#}
+{#            </a></li>#}
+{#        </ul>#}
+{#      </div>#}
+      <div class="clicks">
+       <h2>天津市楼盘价格排序</h2>
+         {% for new in price%}
+       <ol>
+        <li><span><strong>{{ new.id }}</strong></span><a href="tianjin?id={{new.id }}">{{ new.name }} 价位：{{ new.price }}</a></li>
+        </ol>  {% endfor %}
+      </div>
+    </aside>
+  </div>
+  <!--blogs end-->
+</div>
+<!--mainbody end-->
+{#<footer>#}
+{#  <div class="footer-mid">#}
+{#    <div class="links">#}
+{#      <h2>友情链接</h2>#}
+{#      <ul>#}
+{#        <li><a href="/">杨青个人博客</a></li>#}
+{#        <li><a href="http://www.3dst.com">3DST技术服务中心</a></li>#}
+{#      </ul>#}
+{#    </div>#}
+{#    <div class="visitors">#}
+{#      <h2>最新评论</h2>#}
+{#      <dl>#}
+{#        <dt><img src="static/home/images/s8.jpg">#}
+{#        <dt>#}
+{#        <dd>DanceSmile#}
+{#          <time>49分钟前</time>#}
+{#        </dd>#}
+{#        <dd>在 <a href="http://www.yangqq.com/jstt/bj/2013-07-28/530.html#comments" class="title">如果要学习web前端开发，需要学习什么？ </a>中评论：</dd>#}
+{#        <dd>文章非常详细，我很喜欢.前端的工程师很少，我记得几年前yahoo花高薪招聘前端也招不到</dd>#}
+{#      </dl>#}
+{#      <dl>#}
+{#        <dt><img src="static/home/images/s7.jpg">#}
+{#        <dt>#}
+{#        <dd>yisa#}
+{#          <time>2小时前</time>#}
+{#        </dd>#}
+{#        <dd>在 <a href="http://www.yangqq.com/news/s/2013-07-31/533.html#comments" class="title">芭蕾女孩的心事儿</a>中评论：</dd>#}
+{#        <dd>我手机里面也有这样一个号码存在</dd>#}
+{#      </dl>#}
+{#      <dl>#}
+{#        <dt><img src="static/home/images/s6.jpg">#}
+{#        <dt>#}
+{#        <dd>小林博客#}
+{#          <time>8月7日</time>#}
+{#        </dd>#}
+{#        <dd>在 <a href="http://www.yangqq.com/jstt/bj/2013-06-18/285.html#comments" class="title">如果个人博客网站再没有价值，你还会坚持吗？ </a>中评论：</dd>#}
+{#        <dd>博客色彩丰富，很是好看</dd>#}
+{#      </dl>#}
+{#    </div>#}
+{#    <section class="flickr">#}
+{#      <h2>摄影作品</h2>#}
+{#      <ul>#}
+{#        <li><a href="/"><img src="static/home/images/01.jpg"></a></li>#}
+{#        <li><a href="/"><img src="static/home/images/02.jpg"></a></li>#}
+{#        <li><a href="/"><img src="static/home/images/03.jpg"></a></li>#}
+{#        <li><a href="/"><img src="static/home/images/04.jpg"></a></li>#}
+{#        <li><a href="/"><img src="static/home/images/05.jpg"></a></li>#}
+{#        <li><a href="/"><img src="static/home/images/06.jpg"></a></li>#}
+{#        <li><a href="/"><img src="static/home/images/07.jpg"></a></li>#}
+{#        <li><a href="/"><img src="static/home/images/08.jpg"></a></li>#}
+{#        <li><a href="/"><img src="static/home/images/09.jpg"></a></li>#}
+{#      </ul>#}
+{#    </section>#}
+{#  </div>#}
+{#  <div class="footer-bottom">#}
+{#    <p>Copyright 2013 Design by <a href="http://www.yangqq.com">DanceSmile</a></p>#}
+{#  </div>#}
+{#</footer>#}
+{#<!-- jQuery仿腾讯回顶部和建议 代码开始 -->#}
+{#<div id="tbox"> <a id="togbook" href="/e/tool/gbook/?bid=1"></a> <a id="gotop" href="javascript:void(0)"></a> </div>#}
+<!-- 代码结束 -->
+</body>
+</html>
+
+{#  <div class="r_box">#}
+{#      <h2>天津楼盘信息</h2>#}
+{#      <ul>#}
+{#            {% for x in res %}#}
+{#                <h3><a href="/Anjuke_Bj?id={{ x.id }}">{{ x.name}}</a></h3>#}
+{##}
+{#                 <a href="/Anjuke_Bj?id={{x.id }}" target="_blank" class="readmore">阅读全文</a>#}
+{#    </ul>#}
+{#    <p class=""><span>{{ x.add_time|date:"Y-m-d"}}</span></p>#}
+{##}
+{#       {% endfor %}#}
+{##}
+{#      </ul>#}
+{#    </div>#}
+{##}
+{#{% endblock %}#}

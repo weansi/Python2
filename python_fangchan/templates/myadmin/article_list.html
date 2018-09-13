@@ -1,0 +1,46 @@
+{% extends 'myadmin/base.html' %}
+    <div class="right">
+    {% block right_conent %}
+        <h3>文章管理</h3>
+           <div class="list">
+           <div style="text-align: right" ><a href="{% url 'article_add' %}">+添加文章</a></div>
+
+             <table>
+                  <tr>
+                      <th width="5%">ID</th>
+                      <th>标题</th>
+                      <th width="10%">主图</th>
+                      <th width="15%">文章分类</th>
+                      <th width="20%">添加时间</th>
+                      <th width="20%">更新时间</th>
+                      <th width="12%">操作</th>
+                  </tr>
+                {% for i in res %}
+                 <tr class="center">
+                     <td >{{ i.id }}</td>
+                     <td  ><a href="#" title="{{i.desc}}">{{ i.title}}</a></td>
+                     <td> {% if i.image %}<img src="{{ i.image }}" width="20px"height="20px">{% endif %}</td>
+                     <td >{{ i.cat.cat_name}}</td>
+                     <td >{{ i.add_time}}</td>
+                     <td>{{i.update_time}}</td>
+                     <td class="center"><a class="red"href="#" onclick="del({{i.id}})">删除</a> | <a href="/myadmin/article_edit?id={{i.id}}">修改</a></td>
+                </tr>
+                 {% endfor %}
+            </table>
+          </div>
+
+        <div class="page">{{ page_html|safe }}</div>
+         <script>
+         //删除操作幂名函数
+                function del(id){
+                    if(confirm('确定删除吗？')){//confirm是弹窗
+
+                     location.href='/myadmin/article_del?id='+id//字符串拼接，把地址给本地地址
+                    }
+                }
+            </script>
+
+    {% endblock %}
+    </div>
+</body>
+</html>

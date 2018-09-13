@@ -1,0 +1,51 @@
+    div,ul,li,body{margin:0;padding: 0}
+    ul{list-style: none;}
+    a{text-decoration: none}
+    /*div{width: 260px;height: 600px}*/
+
+     h3{background-color: cyan }
+    .header{height: 45px; width: 100%;background-color: #CCCCCC;}
+    .header1{height: 45px; width: 1024px;margin: 0 auto;line-height: 45px;}
+    .red{color: red}
+    .l{float:left;}
+    .r{float:right;}
+
+    .main{width: 1024px;margin: 0 auto;}
+    .main .left{width: 150px;background-color: beige;
+        display: inline-block;
+        float: left;
+    }
+    .left .nav{width:120px; margin: 0 auto;height:400px;}
+    .left .nav li{margin-top: 2px; font-size:18px}
+    .main .right{width: 858px;display: inline-block;margin-left:1px;
+    margin-top: 2px;
+        float: left;  border: 1px solid #CCCCCC;
+    }
+    .list{margin: 15px auto;height:300px;}
+    .list table{width: 850px;margin: 0 auto;border-collapse: collapse;}
+    .list table tr:hover{background-color: #c7c7c7}
+     tr,td,th{border:1px solid #838383;}
+    .center{text-align: center;}
+     text_right{text-align: right;padding-right: 10px;}
+     text_left{text-algin:left;padding-right:10px;}
+    .myform{width: 100%;margin-left: 1px;  padding-top:1px;background-color: #e5e5e5;}
+    .myform label{display: inline-block;width: 20%;text-align: right; font-weight: bold;color: green;padding-right: 8px;}
+    .myform div{margin-top: 2px;}
+    .submit{width: 60px;text-align:center;margin: 0 auto;}
+    .add label{display: inline-block;width: 80px;text-align: right;}
+
+    .page a{display: inline-block;border: 1px solid #006666;margin-left: 8px;
+       padding:0 6px; }
+    .page .curpage{background-color:#747F8C;color:white;}
+    .article_cat_add{width:350px;margin-bottom:10px;}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,94 @@
+{% extends 'myadmin/base.html' %}
+
+<div class="right">
+
+{% block right_conent %}
+    <script src="/static/myadmin/js/kindeditor/kindeditor-all-min.js"></script>
+    <script src="/static/myadmin/js/kindeditor/lang/zh-CN.js"></script>
+    <link rel="stylesheet" href="/static/myadmin/js/kindeditor/themes/default/default.css"/>
+     <!--载入kindeditor配置-->
+     <script>
+        KindEditor.ready(function (k) {
+            window.editor = k.create('#content',{
+                resizeType:1,
+                autoHeightMode : true,
+                allowPreviewEmoticons : false,
+                allowImageRemote : false,
+                items : [
+						'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+						'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+						'insertunorderedlist', '|', 'emoticons', 'image', 'link'],
+                {#处理url#}
+                uploadJson : '/upload/kindeditor',
+            });
+        })
+ </script>
+        <h3>修改文章页面</h3>
+        <!--<div style="text-align: right"><a href="{% url 'article_list' %}">返回列表</a></div>-->
+         <div class="myform">
+              <form action="{% url 'article_edit' %}" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <input type="hidden" name="id" value="{{ res.id }}"/>
+                  <div>
+                      <label>标题:</label>
+                      <input type="text" name="title" value="{{ res.title }}" required>
+                   </div>
+                  <div>
+                       <label>图片:</label>
+                      <div  style="display: inline-block;width: 40px;height: 40px;border: 1px solid lightsteelblue;">
+                          <img id="myimage" width="40px" height="40px" src="{{ res.image }}">
+                      </div>
+
+                       <input type="file" name="image" onchange="change_img(this)">
+                  </div>
+                   <div>
+                      <label>描述:</label>
+                      <textarea name="desc">{{ res.desc }}</textarea>
+                   </div>
+
+                    <div>
+                        <label>文章分类:</label>
+                        <select name="cat_id">
+                          {% for i in cat_res %}
+                            <option {% if res.cat_id == i.id %} selected {% endif %}value="{{ i.id }}">{{ i.cat_name }}</option>
+                          {% endfor %}
+                        </select>
+                   </div>
+                    <div>
+                      <label>详细:</label>
+                      <textarea name="content" id="content" cols="30" rows="10">{{ res.content }}</textarea>
+                   </div>
+                   <div>
+                      <label>排序:</label>
+                      <input type="number" value="{{ res.sort }}" name="sort" required>
+                   </div>
+                    <div>
+                      <label>点击次数:</label>
+                      <input type="number" name="count" value="{{ res.count }}" required>
+                   </div>
+
+                  <div class="submit"><input type="submit" value="提交"/></div>
+              </form>
+         </div>
+    </div>
+<script>
+function change_img(obj){
+    file = obj.files[0]
+    if(window.FileReader){
+       fr = new FileReader()
+        fr.onloadend=function(e){
+            $('#myimage').attr('src',e.target.result)
+
+        }
+        fr.readAsDataURL(file)
+    }
+
+
+}
+</script>
+{% endblock %}
+</div>
+
+
+
+
